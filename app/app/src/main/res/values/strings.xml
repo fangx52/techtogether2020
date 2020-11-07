@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">techtogether2020</string>
+    <string name="app_name">Techtogether2020</string>
+    <string name="name">APP NAME</string>
+    <string name="signin">SIGN IN</string>
+    <string name="signup">SIGN UP</string>
+    <string name="username">USERNAME</string>
+    <string name="password">PASSWORD</string>
 </resources>
