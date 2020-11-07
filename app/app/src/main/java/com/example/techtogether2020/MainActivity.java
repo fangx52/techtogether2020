@@ -15,6 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnSignup, btnSignin;
@@ -26,12 +27,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        auth = FirebaseAuth.getInstance();
+//        FirebaseUser currentUser = auth.getCurrentUser();
+//        updateUI(currentUser);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         btnSignin = (Button) findViewById(R.id.btnSignin);
         btnSignup = (Button) findViewById(R.id.btnSignup);
-        auth = FirebaseAuth.getInstance();
+
 
         btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,23 +46,23 @@ public class MainActivity extends AppCompatActivity {
                 }else if(password.equals("")||password.isEmpty()){
                     Toast.makeText(MainActivity.this, "Please Enter Your Password", Toast.LENGTH_SHORT).show();
                 }else {
-//                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            if (!task.isSuccessful()) {
-//                                txtEmail.setText("");
-//                                txtPassword.setText("");
-//                                Toast.makeText(MainActivity.this, "Wrong Email/Password", Toast.LENGTH_SHORT).show();
-//
-//
-//                            } else {
-//                                NavigatetoDashboard();
-//                               }
-//                        }
-//                    });
-                    if (email.equals("test")&& password.equals("test")){
-                        NavigatetoDashboard();
-                    }
+                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                txtEmail.setText("");
+                                txtPassword.setText("");
+                                Toast.makeText(MainActivity.this, "Wrong Email/Password", Toast.LENGTH_SHORT).show();
+
+
+                            } else {
+                                NavigatetoDashboard();
+                               }
+                        }
+                    });
+//                    if (email.equals("test")&& password.equals("test")){
+//                        NavigatetoDashboard();
+//                    }
                     InputMethodManager keyboard = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                     keyboard.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
                 }
