@@ -52,20 +52,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.729" />
 
-    <EditText
-        android:id="@+id/editTxtNameBox"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="27dp"
-        android:background="@drawable/inputbox"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.706"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.257" />
+
 
     <TextView
         android:id="@+id/txtVwName"
@@ -83,31 +70,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.253" />
-
     <EditText
-        android:id="@+id/editTxtUserBox"
+        android:id="@+id/txtName"
         android:layout_width="210dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="27dp"
         android:background="@drawable/inputbox"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.706"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
+        app:layout_constraintVertical_bias="0.257" />
+
 
     <TextView
-        android:id="@+id/txtVwUsername"
+        android:id="@+id/txtVwEmail"
         android:layout_width="141dp"
         android:layout_height="34dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="8dp"
         android:gravity="top"
-        android:text="@string/username"
+        android:text="@string/email"
         android:textAppearance="@style/userandpass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,19 +105,22 @@
         app:layout_constraintVertical_bias="0.348" />
 
     <EditText
-        android:id="@+id/editTxtPassBox"
+        android:id="@+id/txtEmail"
         android:layout_width="210dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="27dp"
         android:background="@drawable/inputbox"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.706"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintVertical_bias="0.356" />
+
+
 
     <TextView
         android:id="@+id/txtVwPassword"
@@ -146,21 +137,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.448" />
-
-    <Spinner
-        android:id="@+id/spinnerInterests"
+    <EditText
+        android:id="@+id/txtPassword"
         android:layout_width="210dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="27dp"
         android:background="@drawable/inputbox"
+        android:textAlignment="center"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.706"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.564" />
+        app:layout_constraintVertical_bias="0.459" />
 
     <TextView
         android:id="@+id/txtVwInterests"
@@ -178,8 +170,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.547" />
 
-    <EditText
-        android:id="@+id/editTxtGroupDropdown"
+    <Spinner
+        android:id="@+id/spInterests"
         android:layout_width="210dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
@@ -188,10 +180,11 @@
         android:background="@drawable/inputbox"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.706"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718" />
+        app:layout_constraintVertical_bias="0.564" />
+
 
     <TextView
         android:id="@+id/txtVwJoinGroups"
@@ -208,6 +201,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.645" />
+
+
+    <EditText
+        android:id="@+id/txtGroup"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="27dp"
+        android:background="@drawable/inputbox"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.718" />
+
 
     <Button
         android:id="@+id/btnSignin"
