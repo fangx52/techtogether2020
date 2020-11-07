@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/framesignin.xml -->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="345dp"
+    android:height="350dp"
+    android:viewportWidth="345"
+    android:viewportHeight="350"
+    >
+
+    <group>
+
+        <clip-path
+            android:pathData="M25 0H320C333.807 0 345 11.1929 345 25V325C345 338.807 333.807 350 320 350H25C11.1929 350 0 338.807 0 325V25C0 11.1929 11.1929 0 25 0Z"
+            />
+
+        <path
+            android:pathData="M0 0V350H345V0"
+            android:fillColor="#DBC0BD"
+            />
+
+    </group>
+
+</vector>

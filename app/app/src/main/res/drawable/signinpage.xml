@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- drawable/signinpage.xml -->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="412dp"
+    android:height="823dp"
+    android:viewportWidth="412"
+    android:viewportHeight="823"
+    >
+
+    <group>
+
+        <clip-path
+            android:pathData="M0 0H412V823H0V0Z"
+            />
+
+        <path
+            android:pathData="M0 0V823H412V0"
+            android:fillColor="#202C59"
+            />
+
+    </group>
+
+</vector>
