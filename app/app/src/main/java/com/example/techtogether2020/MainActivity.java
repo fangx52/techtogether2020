@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 }else if(password.equals("")||password.isEmpty()){
                     Toast.makeText(MainActivity.this, "Please Enter Your Password", Toast.LENGTH_SHORT).show();
                 }else {
-                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
@@ -74,20 +74,17 @@ public class MainActivity extends AppCompatActivity {
                 NavigatetoSignUp();
             }
         });
-
-
-
     }
     public void NavigatetoDashboard(){
         Intent intent = new Intent(MainActivity.this, Dashboard.class);
         startActivity(intent);
-        //finish();
+        finish();
 
     }
     public void NavigatetoSignUp(){
         Intent intent = new Intent(MainActivity.this, Signup.class);
         startActivity(intent);
-      // finish();
+        finish();
 
     }
 }
