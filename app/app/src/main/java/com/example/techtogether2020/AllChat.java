@@ -9,22 +9,27 @@ import android.widget.TextView;
 
 public class AllChat extends AppCompatActivity {
     private TextView txtVwName;
+    private String ID;
+    private String groupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_chat);
         Intent intent = getIntent();
-        String ID = intent.getStringExtra("ID");
-        String groupName = intent.getStringExtra("Group");
+        ID = intent.getStringExtra("ID");
+        groupName = intent.getStringExtra("Group");
         txtVwName = (TextView) findViewById(R.id.txtVwName);
         txtVwName.setText(groupName);
 
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(AllChat.this, Dashboard.class);
+            intent.putExtra("Chat", ID);
+            intent.putExtra("Group", groupName);
             startActivity(intent);
             finish();
             return true;
@@ -32,4 +37,5 @@ public class AllChat extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+
 }
