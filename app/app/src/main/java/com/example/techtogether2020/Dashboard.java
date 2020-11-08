@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 public class Dashboard extends AppCompatActivity {
     private FirebaseAuth auth;
     private ArrayList<ChatInfo> chats;
+    private ImageButton imgBtnAddGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,12 @@ public class Dashboard extends AppCompatActivity {
 
                 NavigatetoAllChat(chats.get(position).getChatID());
 
-
+        imgBtnAddGroup = (ImageButton) findViewById(R.id.imgBtnAddGroup);
+        imgBtnAddGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Dashboard.this,CreateGroup.class);
+                startActivity(intent);
             }
         });
 

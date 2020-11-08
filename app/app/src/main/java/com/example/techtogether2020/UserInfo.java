@@ -1,12 +1,14 @@
 package com.example.techtogether2020;
 
+import java.util.ArrayList;
+
 public class UserInfo {
     public String name;
-    public String interests;
+    public ArrayList<String> interests;
     public String existingGroup;
 
 //    public UserInfo(String name, String interests){
-public UserInfo(String name, String existingGroup){
+public UserInfo(String name, String existingGroup, ArrayList<String> interests){
         this.name= name;
         this.existingGroup = existingGroup;
         this.interests= interests;
@@ -18,11 +20,11 @@ public UserInfo(String name, String existingGroup){
     public void setName(String name){
         this.name= name;
     }
-    public String getInterests(){
+    public ArrayList<String> getInterests(){
         return this.interests;
     }
     public void setInterests(String name){
-        this.interests= interests;
+        interests.add(name);
     }
     public String getExistingGroup(){
         return this.existingGroup;
