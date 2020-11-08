@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Signup extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class Signup extends AppCompatActivity {
     private Button btnSignin, btnSignup;
     private Spinner spinner;
     private LinearLayout lnInterests;
+    private ArrayList<String> allInterests;
 
     private FirebaseAuth auth;
     private String TAG= "COMPLETE SIGNIN";
@@ -51,6 +53,7 @@ public class Signup extends AppCompatActivity {
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtGroup = (EditText) findViewById(R.id.txtGroup);
         spinner = (Spinner) findViewById(R.id.spInterests);
+        allInterests = new ArrayList<>();
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.interests_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -60,6 +63,7 @@ public class Signup extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selected = parent.getSelectedItem().toString();
                 if (!selected.equals("") || !selected.isEmpty()) {
+                    allInterests.add(selected);
                     TextView interests = new TextView(Signup.this);
                     interests.setBackground(getResources().getDrawable(R.drawable.interests));
                     interests.setText(selected);
@@ -93,7 +97,7 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(Signup.this, "Wrong Email/Password", Toast.LENGTH_SHORT).show();
 
                 }else {
-                    createUser(name, email, password, group);
+                    createUser(name, email, password, group, allInterests);
                     NavigatetoDashboard();
                 }
                 InputMethodManager keyboard = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -109,7 +113,7 @@ public class Signup extends AppCompatActivity {
 
 
     }
-    public void createUser(String name, String email, String password, String group){
+    public void createUser(String name, String email, String password, String group, ArrayList<String> interests){
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -127,7 +131,7 @@ public class Signup extends AppCompatActivity {
         });
         DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
         FirebaseUser user= auth.getCurrentUser();
-        UserInfo info = new UserInfo(name, group);
+        UserInfo info = new UserInfo(name, group, interests);
 
         databaseReference.child(user.getUid()).setValue(info);
 
