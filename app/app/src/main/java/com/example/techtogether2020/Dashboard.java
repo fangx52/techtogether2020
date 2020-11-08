@@ -2,27 +2,25 @@ package com.example.techtogether2020;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageButton;
-import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -54,15 +52,17 @@ public class Dashboard extends AppCompatActivity {
 
                 NavigatetoAllChat(chats.get(position).getChatID());
 
-        imgBtnAddGroup = (ImageButton) findViewById(R.id.imgBtnAddGroup);
-        imgBtnAddGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Dashboard.this,CreateGroup.class);
-                startActivity(intent);
+                imgBtnAddGroup = (ImageButton) findViewById(R.id.imgBtnAddGroup);
+                imgBtnAddGroup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Dashboard.this, CreateGroup.class);
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
-
     }
 
     private void NavigatetoAllChat(String ID) {
@@ -70,6 +70,7 @@ public class Dashboard extends AppCompatActivity {
         intent.putExtra("ID", ID);
         startActivity(intent);
         finish();
+
     }
 }
 
