@@ -3,14 +3,21 @@ package com.example.techtogether2020;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.AuthResult;
@@ -21,10 +28,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 public class Signup extends AppCompatActivity {
-    private Spinner  spInterests;
     private EditText txtEmail, txtPassword, txtName, txtGroup;
     private Button btnSignin, btnSignup;
+    private Spinner spinner;
+    private LinearLayout lnInterests;
 
     private FirebaseAuth auth;
     private String TAG= "COMPLETE SIGNIN";
@@ -35,12 +45,37 @@ public class Signup extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
 
+        lnInterests = (LinearLayout) findViewById(R.id.lnInterests);
         txtName = (EditText) findViewById(R.id.txtName);
         txtEmail= (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
-        spInterests =(Spinner) findViewById(R.id.spInterests);
         txtGroup = (EditText) findViewById(R.id.txtGroup);
+        spinner = (Spinner) findViewById(R.id.spInterests);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.interests_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = parent.getSelectedItem().toString();
+                if (!selected.equals("") || !selected.isEmpty()) {
+                    TextView interests = new TextView(Signup.this);
+                    interests.setBackground(getResources().getDrawable(R.drawable.interests));
+                    interests.setText(selected);
+                    interests.setGravity(Gravity.CENTER);
+                    interests.setTextColor(Color.BLACK);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(300, 75);
+                    layoutParams.setMargins(10, 0, 10, 0);
+                    lnInterests.addView(interests, layoutParams);
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         btnSignin =(Button) findViewById(R.id.btnSignin);
         btnSignup = (Button) findViewById(R.id.btnSignup);
@@ -97,17 +132,30 @@ public class Signup extends AppCompatActivity {
         databaseReference.child(user.getUid()).setValue(info);
 
     }
-    public void NavigatetoSignIn(){
+    public void NavigatetoSignIn() {
         Intent intent = new Intent(Signup.this, MainActivity.class);
         startActivity(intent);
         finish();
 
     }
-    public void NavigatetoDashboard(){
+    public void NavigatetoDashboard() {
         Intent intent = new Intent(Signup.this, Dashboard.class);
         startActivity(intent);
         finish();
 
     }
 
+}
+
+class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        parent.getItemAtPosition(pos);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+    }
 }
