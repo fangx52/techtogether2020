@@ -50,7 +50,7 @@ public class Signup extends AppCompatActivity {
         txtEmail= (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtGroup = (EditText) findViewById(R.id.txtGroup);
-        spinner = (Spinner) findViewById(R.id.spInterests);
+        spInterests = (Spinner) findViewById(R.id.spInterests);
         allInterests = new HashSet<>();
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.interests_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
