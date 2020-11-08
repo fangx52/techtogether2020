@@ -21,12 +21,12 @@
 
     <LinearLayout
         android:id="@+id/lnDashboard"
-        android:layout_width="354dp"
-        android:layout_height="611dp"
+        android:layout_width="364dp"
+        android:layout_height="590dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:orientation="vertical"
         android:background="@drawable/framesignin"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -41,18 +41,22 @@
             android:text="Groups"
             android:textAlignment="center"
             android:textSize="30sp" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/button_icon"
-        android:contentDescription="@string/button_icon_desc"
+    <ImageButton
+        android:id="@+id/button7"
+        android:layout_width="60dp"
+        android:layout_height="62dp"
+        android:background="@drawable/addbutton"
+        android:src="@drawable/add"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
+
+    <!--        app:layout_constraintVertical_bias="0.023" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
