@@ -99,15 +99,14 @@ public class Signup extends AppCompatActivity {
     }
     public void NavigatetoSignIn(){
         Intent intent = new Intent(Signup.this, MainActivity.class);
+        intent.putExtra("user", auth.getCurrentUser());
         startActivity(intent);
         finish();
-
     }
     public void NavigatetoDashboard(){
         Intent intent = new Intent(Signup.this, Dashboard.class);
         startActivity(intent);
         finish();
-
     }
 
 }
