@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -25,49 +26,65 @@ import java.util.ArrayList;
 
 public class Dashboard extends AppCompatActivity {
     private FirebaseAuth auth;
+    private ArrayList<ChatInfo> chats;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
-
-        String email = user.getEmail();
-        Log.i("UserInfo", email);
+        String chatID = "1", chatID1 = "2";
 
 
-        ArrayList<ChatInfo> chats = new ArrayList<>();
-        chats.add(new ChatInfo(R.drawable.profileimg, "Hermione Granger", "Harry! Where are you? " +
-                "How's it going..."));
-        ChatAdapter adapter = new ChatAdapter(this, R.id.lnDashboard, chats);
+        chats = new ArrayList<>();
+        chats.add(new ChatInfo(R.drawable.profilepic2, "Alexa", "Alexa! Where are you? " +
+                "How's it going...", chatID));
+        chats.add(new ChatInfo(R.drawable.profilepic1, "Mary", "Mary! Where are you? " +
+                "How's it going...", chatID1));
+        ChatAdapter adapter = new ChatAdapter(this, chats);
 
-        ListView chatList = (ListView) findViewById(R.id.lnDashboard);
+        ListView chatList = (ListView) findViewById(R.id.listview_chats);
 
         chatList.setAdapter(adapter);
+        chatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                NavigatetoAllChat(chats.get(position).getChatID());
+
+
+            }
+        });
+
+    }
+
+    private void NavigatetoAllChat(String ID) {
+        Intent intent = new Intent(Dashboard.this, AllChat.class);
+        intent.putExtra("ID", ID);
+        startActivity(intent);
+        finish();
     }
 }
 
 class ChatAdapter extends BaseAdapter {
     private final Context context;
-    private final ArrayList<ChatInfo> mChats;
-    private final Resources mRes;
+    private final ArrayList<ChatInfo> chats;
+    private final Resources res;
 
     public ChatAdapter(Context context, ArrayList<ChatInfo> chats) {
         this.context = context;
-        mChats = chats;
-        mRes = context.getResources();
+        this.chats = chats;
+        this.res = context.getResources();
 
     }
 
     @Override
     public int getCount() {
-        return mChats.size();
+        return chats.size();
     }
 
     @Override
     public ChatInfo getItem(int pos) {
-        return mChats.get(pos);
+        return chats.get(pos);
     }
 
     @Override
@@ -78,24 +95,24 @@ class ChatAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         //Get the instance of our chat
         View row;
-        if (view == null){  //indicates this is the first time we are creating this row.
+        if (view == null) {  //indicates this is the first time we are creating this row.
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  //Inflater's are awesome, they convert xml to Java Objects!
             row = inflater.inflate(R.layout.customchat, parent, false);
-        }
-        else
-        {
+        } else {
             row = view;
         }
-        ChatInfo chat = mChats.get(position);
+        ChatInfo chat = chats.get(position);
+        Log.i("CHATINFO", chat.getName());
+        Log.i("CHATINFO", chat.getMessage());
 
 
         //Get UI objects
         ImageView profilePic = (ImageView) row.findViewById(R.id.imgVwProfile);
         TextView nameView = (TextView) row.findViewById(R.id.txtVwName);
-        TextView messageView = (TextView) row.findViewById(R.id.message);
+        TextView messageView = (TextView) row.findViewById(R.id.txtVwMessage);
 
         //Set image profile picture
-        profilePic.setImageDrawable(mRes.getDrawable(chat.getProfilePic()));
+        profilePic.setImageDrawable(res.getDrawable(chat.getProfilePic()));
 
         //Set text into TextViews
         nameView.setText(chat.getName());
