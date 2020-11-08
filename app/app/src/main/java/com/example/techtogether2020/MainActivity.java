@@ -15,7 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseUser;
+
 
 public class MainActivity extends AppCompatActivity {
     private Button btnSignup, btnSignin;
@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
-//        FirebaseUser currentUser = auth.getCurrentUser();
-//        updateUI(currentUser);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         btnSignin = (Button) findViewById(R.id.btnSignin);
@@ -60,9 +58,6 @@ public class MainActivity extends AppCompatActivity {
                                }
                         }
                     });
-//                    if (email.equals("test")&& password.equals("test")){
-//                        NavigatetoDashboard();
-//                    }
                     InputMethodManager keyboard = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                     keyboard.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
                 }
@@ -77,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void NavigatetoDashboard(){
         Intent intent = new Intent(MainActivity.this, Dashboard.class);
+        intent.putExtra("user", auth.getCurrentUser());
         startActivity(intent);
         finish();
 
