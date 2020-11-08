@@ -1,31 +1,34 @@
 package com.example.techtogether2020;
 
 public class ChatInfo {
-    private int mProfilePic;
-    private String mName;
-    private String mMessage;
+    private int profilePic;
+    private String name;
+    private String message;
     private String chatID;
+    public ChatInfo( ) {
 
-    ChatInfo(int profilePic, String name, String message, String chatID) {
-        mProfilePic = profilePic;
-        mName = name;
-        mMessage = message;
+    }
+    public ChatInfo( String chatID,int profilePic, String name,String message) {
+        this.profilePic = profilePic;
+        this.name = name;
+        this.message = message;
         this.chatID= chatID;
     }
+
 
     public String getChatID(){
         return chatID;
     }
     public int getProfilePic() {
-        return mProfilePic;
+        return profilePic;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public String getMessage() {
-        return mMessage;
+        return message;
     }
 }
 

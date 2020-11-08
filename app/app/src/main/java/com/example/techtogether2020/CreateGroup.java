@@ -65,8 +65,8 @@ public class CreateGroup extends AppCompatActivity {
                 DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
                 FirebaseUser user= auth.getCurrentUser();
                 String groupName = txtGroupName.getText().toString();
-                ChatInfo info = new ChatInfo(R.drawable.profilepic2, groupName, groupName+" " +interest +
-                        "How's it going...", chatID);
+                ChatInfo info = new ChatInfo( chatID, R.drawable.profilepic2,groupName ,"Topic:" +interest +" | "+
+                        "How's it going...");
 
                 databaseReference.child(user.getUid()).child("Group").child(groupName).setValue(info);
                 Intent intent = new Intent(CreateGroup.this, AllChat.class);

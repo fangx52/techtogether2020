@@ -35,6 +35,7 @@ public class Dashboard extends AppCompatActivity {
     private ArrayList<ChatInfo> chats;
     private ImageButton imgBtnAddGroup;
     private String TAG="DATABASE";
+    private ListView chatList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,57 +45,63 @@ public class Dashboard extends AppCompatActivity {
         String chatID = "1", chatID1 = "2";
         auth = FirebaseAuth.getInstance();
         FirebaseUser user= auth.getCurrentUser();
-        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(user.getUid());
-
-        ChatInfo info = new ChatInfo(R.drawable.profilepic2, "Group 1", "Alexa! Where are you? " +
-                "How's it going...", chatID);
-        ChatInfo info1 = new ChatInfo(R.drawable.profilepic1, "Group 2", "Mary! Where are you? " +
-                "How's it going...", chatID1);
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                Log.d(TAG, "Value is: " + value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException());
-//            }
-//        });
-
-        databaseReference.child("Group").child("Group 1").setValue(info);
-        databaseReference.child("Group").child("Group 2").setValue(info1);
-
-
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference(user.getUid());
+        DatabaseReference dbRefGroup =  databaseReference.child("Group");
         chats = new ArrayList<>();
-        chats.add(info);
-        chats.add(info1);
-        ChatAdapter adapter = new ChatAdapter(this, chats);
 
-        ListView chatList = (ListView) findViewById(R.id.listview_chats);
 
-        chatList.setAdapter(adapter);
-        chatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        ChatInfo info1 = new ChatInfo(R.drawable.profilepic1, "Group 2", "Mary! Where are you? " +
+//                "How's it going...", chatID1);
+
+      dbRefGroup.addListenerForSingleValueEvent(new ValueEventListener()  {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                int i=0;
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    ChatInfo info = snapshot.getValue(ChatInfo.class);
+                    chats.add(info);
+                    Log.i("CHATINFO", chats.get(i).getProfilePic()+"");
+                    i++;
 
-                NavigatetoAllChat(chats.get(position).getChatID(),chats.get(position).getName());
+                }
+                ChatAdapter adapter = new ChatAdapter(Dashboard.this, chats);
 
-                imgBtnAddGroup = (ImageButton) findViewById(R.id.imgBtnAddGroup);
-                imgBtnAddGroup.setOnClickListener(new View.OnClickListener() {
+                chatList= (ListView) findViewById(R.id.listview_chats);
+
+                chatList.setAdapter(adapter);
+                chatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Dashboard.this, CreateGroup.class);
-                        startActivity(intent);
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        NavigatetoAllChat(chats.get(position).getChatID(),chats.get(position).getName());
+
+                        imgBtnAddGroup = (ImageButton) findViewById(R.id.imgBtnAddGroup);
+                        imgBtnAddGroup.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Dashboard.this, CreateGroup.class);
+                                startActivity(intent);
+                            }
+                        });
+
                     }
                 });
 
             }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
         });
+        for(ChatInfo i: chats){
+            Log.i(TAG, "Array"+ i.getChatID());
+        }
+
+
         imgBtnAddGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,7 +173,7 @@ class ChatAdapter extends BaseAdapter {
         TextView messageView = (TextView) row.findViewById(R.id.txtVwMessage);
 
         //Set image profile picture
-        profilePic.setImageDrawable(res.getDrawable(chat.getProfilePic()));
+//        profilePic.setImageDrawable(res.getDrawable(chat.getProfilePic()));
 
         //Set text into TextViews
         nameView.setText(chat.getName());
