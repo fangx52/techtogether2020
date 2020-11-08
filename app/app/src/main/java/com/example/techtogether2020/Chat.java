@@ -2,7 +2,9 @@ package com.example.techtogether2020;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,5 +20,16 @@ public class Chat extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(Chat.this, AllChat.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
 
 }
