@@ -16,6 +16,7 @@ public UserInfo(String name, String existingGroup, ArrayList<String> interests){
     public String getName(){
         return this.name;
     }
+
     public void setName(String name){
         this.name= name;
     }
