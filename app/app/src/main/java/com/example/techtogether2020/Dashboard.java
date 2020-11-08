@@ -42,16 +42,12 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         imgBtnAddGroup = (ImageButton) findViewById(R.id.imgBtnAddGroup);
-        String chatID = "1", chatID1 = "2";
         auth = FirebaseAuth.getInstance();
         FirebaseUser user= auth.getCurrentUser();
         DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference(user.getUid());
         DatabaseReference dbRefGroup =  databaseReference.child("Group");
         chats = new ArrayList<>();
 
-
-//        ChatInfo info1 = new ChatInfo(R.drawable.profilepic1, "Group 2", "Mary! Where are you? " +
-//                "How's it going...", chatID1);
 
       dbRefGroup.addListenerForSingleValueEvent(new ValueEventListener()  {
             @Override
@@ -62,7 +58,6 @@ public class Dashboard extends AppCompatActivity {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()){
                     ChatInfo info = snapshot.getValue(ChatInfo.class);
                     chats.add(info);
-                    Log.i("CHATINFO", chats.get(i).getProfilePic()+"");
                     i++;
 
                 }
