@@ -98,7 +98,7 @@ public class Signup extends AppCompatActivity {
 
                 }else {
                     createUser(name, email, password, group, allInterests);
-                    NavigatetoDashboard();
+
                 }
                 InputMethodManager keyboard = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 keyboard.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
@@ -113,14 +113,20 @@ public class Signup extends AppCompatActivity {
 
 
     }
-    public void createUser(String name, String email, String password, String group, ArrayList<String> interests){
+    public void createUser(final String name, String email, String password, final String group, final ArrayList<String> interests){
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     // Sign in success, update UI with the signed-in user's information
+                    DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
                     Log.d(TAG, "createUserWithEmail:success");
                     FirebaseUser user = auth.getCurrentUser();
+                    UserInfo info = new UserInfo(name, group, interests);
+                    databaseReference.child(user.getUid()).setValue(info);
+                    Log.i("UID", user.getUid());
+                    NavigatetoDashboard();
+
                     //updateUI(user);
                 } else {
                     // If sign in fails, display a message to the user.
@@ -129,11 +135,7 @@ public class Signup extends AppCompatActivity {
                 }
             }
         });
-        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
-        FirebaseUser user= auth.getCurrentUser();
-        UserInfo info = new UserInfo(name, group, interests);
 
-        databaseReference.child(user.getUid()).setValue(info);
 
     }
     public void NavigatetoSignIn() {
