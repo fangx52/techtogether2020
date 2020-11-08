@@ -41,16 +41,17 @@
 
     <View
         android:id="@+id/txtVwFrameSignup"
-        android:layout_width="345dp"
-        android:layout_height="550dp"
+        android:layout_width="352dp"
+        android:layout_height="545dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/framesignin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.58" />
+        app:layout_constraintVertical_bias="0.639" />
 
     <TextView
         android:id="@+id/txtVwGroupName"
@@ -136,8 +137,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.448" />
 
-    <EditText
-        android:id="@+id/txtInterests"
+    <Spinner
+        android:id="@+id/spInterests"
         android:layout_width="203dp"
         android:layout_height="45dp"
         android:layout_alignParentLeft="true"
@@ -154,21 +155,6 @@
         app:layout_constraintVertical_bias="0.462" />
 
     <Button
-        android:id="@+id/btnDashboard"
-        android:layout_width="204dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/buttons"
-        android:text="RETURN TO Dashboard"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.885" />
-
-    <Button
         android:id="@+id/btnCreateGroup"
         android:layout_width="204dp"
         android:layout_height="40dp"
@@ -182,5 +168,20 @@
         app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.764" />
+
+    <Button
+        android:id="@+id/btnDashboard"
+        android:layout_width="204dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/buttons"
+        android:text="RETURN TO Dashboard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85" />
 </androidx.constraintlayout.widget.ConstraintLayout>
