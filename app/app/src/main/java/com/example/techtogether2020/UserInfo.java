@@ -1,14 +1,16 @@
 package com.example.techtogether2020;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class UserInfo {
     public String name;
-    public ArrayList<String> interests;
+    public HashSet<String> interests;
     public String existingGroup;
+    public HashSet<String> groupTracker;
 
 //    public UserInfo(String name, String interests){
-public UserInfo(String name, String existingGroup, ArrayList<String> interests){
+public UserInfo(String name, String existingGroup, HashSet<String> interests){
         this.name= name;
         this.existingGroup = existingGroup;
         this.interests= interests;
@@ -20,7 +22,7 @@ public UserInfo(String name, String existingGroup, ArrayList<String> interests){
     public void setName(String name){
         this.name= name;
     }
-    public ArrayList<String> getInterests(){
+    public HashSet<String> getInterests(){
         return this.interests;
     }
     public void setInterests(String name){

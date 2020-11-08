@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Signup extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class Signup extends AppCompatActivity {
     private Button btnSignin, btnSignup;
     private Spinner spinner;
     private LinearLayout lnInterests;
-    private ArrayList<String> allInterests;
+    private HashSet<String> allInterests;
 
     private FirebaseAuth auth;
     private String TAG= "COMPLETE SIGNIN";
@@ -53,7 +54,7 @@ public class Signup extends AppCompatActivity {
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtGroup = (EditText) findViewById(R.id.txtGroup);
         spinner = (Spinner) findViewById(R.id.spInterests);
-        allInterests = new ArrayList<>();
+        allInterests = new HashSet<>();
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.interests_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -113,7 +114,7 @@ public class Signup extends AppCompatActivity {
 
 
     }
-    public void createUser(final String name, String email, String password, final String group, final ArrayList<String> interests){
+    public void createUser(final String name, String email, String password, final String group, final HashSet<String> interests){
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
