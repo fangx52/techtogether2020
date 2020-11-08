@@ -27,14 +27,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Signup extends AppCompatActivity {
     private EditText txtEmail, txtPassword, txtName, txtGroup;
     private Button btnSignin, btnSignup;
     private Spinner spInterests;
     private LinearLayout lnInterests;
-    private ArrayList<String> allInterests;
+    private HashSet<String> allInterests;
 
     private FirebaseAuth auth;
     private String TAG= "COMPLETE SIGNIN";
@@ -51,9 +51,8 @@ public class Signup extends AppCompatActivity {
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtGroup = (EditText) findViewById(R.id.txtGroup);
         spInterests = (Spinner) findViewById(R.id.spInterests);
-        allInterests = new ArrayList<>();
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.interests_array, android.R.layout.simple_spinner_item);
+        allInterests = new HashSet<>();
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.interests_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spInterests.setAdapter(adapter);
         spInterests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -114,7 +113,7 @@ public class Signup extends AppCompatActivity {
 
 
     }
-    public void createUser(final String name, String email, String password, final String group, final ArrayList<String> interests){
+    public void createUser(final String name, String email, String password, final String group, final HashSet<String> interests){
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Signup.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

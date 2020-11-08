@@ -38,6 +38,7 @@
             android:id="@+id/txtVwGroups"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:fontFamily="monospace"
             android:text="Groups"
             android:textAlignment="center"
             android:textSize="30sp" />

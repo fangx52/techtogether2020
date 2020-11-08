@@ -23,6 +23,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="12dp"
             android:text="Name"
+            android:fontFamily="monospace"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
