@@ -8,8 +8,9 @@
     <string name="fullname">FULL NAME</string>   
     <string name="interests">INTERESTS</string>
     <string-array name="interests_array">
+        <item></item>
+        <item>Hackathons</item>
         <item>Running</item>
-        <item>TikTok</item>
         <item>Cooking</item>
         <item>Music</item>
         <item>Animals</item>
