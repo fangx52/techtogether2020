@@ -3,7 +3,6 @@ package com.example.techtogether2020;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,12 +28,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Signup extends AppCompatActivity {
     private EditText txtEmail, txtPassword, txtName, txtGroup;
     private Button btnSignin, btnSignup;
-    private Spinner spinner;
+    private Spinner spInterests;
     private LinearLayout lnInterests;
     private ArrayList<String> allInterests;
 
@@ -52,15 +50,18 @@ public class Signup extends AppCompatActivity {
         txtEmail= (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtGroup = (EditText) findViewById(R.id.txtGroup);
-        spinner = (Spinner) findViewById(R.id.spInterests);
+        spInterests = (Spinner) findViewById(R.id.spInterests);
         allInterests = new ArrayList<>();
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.interests_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spInterests.setAdapter(adapter);
+        spInterests.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                InputMethodManager keyboard = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                keyboard.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
                 String selected = parent.getSelectedItem().toString();
                 if (!selected.equals("") || !selected.isEmpty()) {
                     allInterests.add(selected);
@@ -152,15 +153,3 @@ public class Signup extends AppCompatActivity {
 
 }
 
-class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
-
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        parent.getItemAtPosition(pos);
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
-    }
-}
