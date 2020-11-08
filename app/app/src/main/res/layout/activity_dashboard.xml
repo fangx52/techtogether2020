@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.65">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/txtVwGroups"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="Groups"
@@ -45,7 +45,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/button7"
+        android:id="@+id/imgBtnAddGroup"
         android:layout_width="60dp"
         android:layout_height="62dp"
         android:background="@drawable/addbutton"
