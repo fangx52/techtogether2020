@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,6 +15,8 @@ public class Chat extends AppCompatActivity {
     FirebaseAuth auth;
     private String ID;
     private String groupName;
+    private String channel;
+    private TextView txtVwChatGrp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,10 @@ public class Chat extends AppCompatActivity {
         Intent intent = getIntent();
         ID = intent.getStringExtra("ID");
         groupName = intent.getStringExtra("Group");
+        channel=intent.getStringExtra("Channel");
+        txtVwChatGrp=(TextView) findViewById(R.id.txtVwChatGrp);
+        txtVwChatGrp.setText(channel);
+
     }
 
     @Override
